@@ -12,21 +12,21 @@
         <a href="./scores/html">View Highscores</a>
         <span id="timeRemaining">Time: </span>
     </nav>
-    <div class="centerColumn">
-        <h1>Coding Quiz Challenge</h1>
-        <p>Try to answer the following code-related questions qithin the time limit. Keep in mind that incorrect answers
-            will penalize your score/time by ten seconds!</p>
-        <button id="startBtn">Start Quiz</button>
-    </div>
-    <div id="questionContainer" class="centerColumn">
-        <div id="questionText"></div>
-        <div id="responseOptions">
+    <section class="centerColumn">
+        <div id="instructionsScreen">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions qithin the time limit. Keep in mind that incorrect
+                answers
+                will penalize your score/time by ten seconds!</p>
+            <button id="startBtn">Start Quiz</button>
+        </div>
+        <div id="questionContainer" class="centerColumn">
+            <div id="questionText"></div>
             <button id="option0" class="btn"></button>
             <button id="option1" class="btn"></button>
             <button id="option2" class="btn"></button>
             <button id="option3" class="btn"></button>
         </div>
-
         <div id="answerResult"></div>
 
         <div id="endGameContainer">
@@ -44,7 +44,9 @@
                 Please enter your initials!
             </div>
         </div>
-    </div>
+        </div>
+    </section>
+
     <script src="./assets/questions.js"></script>
     <script src="./assets/script.js"></script>
 </body>
