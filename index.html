@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Coding Quiz Challenge</title>
+</head>
+
+<body>
+    <nav class="font24">
+        <a href="./scores/html">View Highscores</a>
+        <span id="timeRemaining">Time: </span>
+    </nav>
+    <div class="centerColumn">
+        <h1>Coding Quiz Challenge</h1>
+        <p>Try to answer the following code-related questions qithin the time limit. Keep in mind that incorrect answers
+            will penalize your score/time by ten seconds!</p>
+        <button id="startBtn">Start Quiz</button>
+    </div>
+    <div id="questionContainer" class="centerColumn">
+        <div id="questionText"></div>
+        <div id="responseOptions">
+            <button id="option0" class="btn"></button>
+            <button id="option1" class="btn"></button>
+            <button id="option2" class="btn"></button>
+            <button id="option3" class="btn"></button>
+        </div>
+
+        <div id="answerResult"></div>
+
+        <div id="endGameContainer">
+            <h2>All Done!</h2>
+            <p>Your final score is:</p>
+            <h3 id="showScore">DNF</h3>
+            <form id="enterInitials">
+                <div>
+                    <label for="inputInitials">Enter Your Initials</label>
+                    <input type="text" id="playerInitials" value="">
+                </div>
+                <button type="submit" id="submitButton">Submit</button>
+            </form>
+            <div id="alertBox" style="display: none">
+                Please enter your initials!
+            </div>
+        </div>
+    </div>
+    <script src="./assets/questions.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>

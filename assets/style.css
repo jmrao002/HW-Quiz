@@ -1,0 +1,38 @@
+body nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+body header a {
+  color: #4e2a84;
+}
+
+.font24 {
+  font-size: 24px;
+}
+
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #4e2a84;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #924cfc;
+}
+
+.hide {
+  display: none;
+}
