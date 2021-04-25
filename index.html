@@ -8,39 +8,39 @@
 </head>
 
 <body>
-    <nav class="font24">
-        <a href="./scores/html">View Highscores</a>
-        <span id="timeRemaining">Time: </span>
+    <nav class="font-24">
+        <a href="scores.html">View Highscores</a>
+        <span id="time-remaining">Time: </span>
     </nav>
-    <section class="centerColumn">
-        <div id="instructionsScreen">
+    <section class="center-column">
+        <div id="instructions-screen">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions qithin the time limit. Keep in mind that incorrect
                 answers
                 will penalize your score/time by ten seconds!</p>
-            <button id="startBtn">Start Quiz</button>
+            <button id="start-btn">Start Quiz</button>
         </div>
-        <div id="questionContainer" class="centerColumn">
-            <div id="questionText"></div>
+        <div id="question-container" class="center-column hide">
+            <div id="question-text"></div>
             <button id="option0" class="btn">0</button>
             <button id="option1" class="btn">1</button>
             <button id="option2" class="btn">2</button>
             <button id="option3" class="btn">3</button>
         </div>
-        <div id="answerResult"></div>
+        <div id="answer-result"></div>
 
-        <div id="endGameContainer">
+        <div id="end-game-container" class="hide">
             <h2>All Done!</h2>
             <p>Your final score is:</p>
-            <h3 id="showScore">DNF</h3>
-            <form id="enterInitials">
+            <h3 id="show-score">DNF</h3>
+            <form id="enter-initials">
                 <div>
-                    <label for="inputInitials">Enter Your Initials</label>
-                    <input type="text" id="playerInitials" value="">
+                    <label for="input-initials">Enter Your Initials</label>
+                    <input type="text" id="player-initials" value="">
                 </div>
-                <button type="submit" id="submitButton">Submit</button>
+                <button type="submit" id="submit-button">Submit</button>
             </form>
-            <div id="alertBox" style="display: none">
+            <div id="alert-box" class="hide">
                 Please enter your initials!
             </div>
         </div>

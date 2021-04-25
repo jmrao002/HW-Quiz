@@ -1,50 +1,56 @@
-// Define variables to be used to access elements via the DOM
-let timeRemainingEl = document.getElementById("timeRemaining");
-let timeEl = 15 * questions.length;
-let countdownEl;
-let questionContainerEl = document.getElementById("questionContainer");
-let questionTextEl = document.getElementById("questionText");
+// Global variables
+let time = 15 * questions.length;
+let timeLimit;
+let questionContainerEl = document.getElementById("question-container");
+let questionTextEl = document.getElementById("question-text");
 let responseOptionsEl = [
   document.getElementById("option0"),
   document.getElementById("option1"),
   document.getElementById("option2"),
   document.getElementById("option3"),
 ];
-let playerInitialsEl = document.querySelector("playerInitials");
-let alertBoxEl = document.querySelector("alertBox");
-let gameOverEl = document.querySelector("endGameContainer");
+let resultEl = document.getElementById("answer-result");
+let playerInitialsEl = document.getElementById("player-initials");
+let alertBoxEl = document.getElementById("alert-box");
 let questionNumEl = 0;
 let scoresArrayEl;
-playerInitials.value = "";
+// playerInitialsEl.value = "";
 
 // Function that will execute upon clicking the start button
 function startQuiz() {
   // Hide title screen
-  document.querySelector("#instructionsScreen").style = "display: none";
+  let hideInstructions = document.getElementById("instructions-screen");
+  hideInstructions.classList.add("hide");
   // Set timer
-  document.querySelector("#timeRemaining").textContent = "Time: " + timeEl;
-  // find dom element to show the question
-  document.querySelector("#questionContainer").style = "display: block";
-  // Start timer
-  countdownEl = setInterval(function () {
-    timeEl--;
-    timeRemainingEl.textcontent = "Time: " + timeEl;
-    if (timeEl <= 0) {
-      clearInterval(countdownEl);
-      endGame();
-    }
-  });
+  let timeRemainingEl = document.getElementById("time-remaining");
+  timeRemainingEl.textContent = "Time: " + time;
+  // show question container
+  questionContainerEl.style = "display: block";
   // Show first question
   getQuestion();
+  startTimer();
 }
 
+function startTimer() {
+  timeLimit = setInterval(function () {
+    time--;
+    document.getElementById("time-remaining").textContent = "Time: " + time;
+    if (time <= 0) {
+      clearInterval(timeLimit);
+      endGame();
+    }
+  }, 1000);
+}
+
+// show questions in order
 function getQuestion() {
   // Get current question
   let questionInfoEl = questions[questionNumEl];
   // If there are no questions left, stop time, end function
   if (questionInfoEl == undefined) {
-    clearInterval(countdownEl);
+    clearInterval(time);
     endGame();
+    return;
   } else {
     // loop show choices
     for (let i = 0; i < responseOptionsEl.length; i++) {
@@ -52,62 +58,96 @@ function getQuestion() {
         i + 1 + ". " + questionInfoEl.choices[i];
       responseOptionsEl[i].value = questionInfoEl.choices[i];
     }
-    document.querySelector("#questionText").textContent = questionInfoEl.title;
+    document.getElementById("question-text").textContent = questionInfoEl.title;
     // show the question
-    questionContainerEl.style.display = "block";
+    questionContainerEl.style = "display: block";
   }
   answerCheck();
 }
 
 // check user selection
-function answerCheck() {
-  let answerTextEl = document.getElementById("answerResult");
-  // check the user selection against correct answer
-  if (event.target.nodeName == "button") {
-    let playerAnswerEl = event.target.value;
-    if (playerAnswerEl) {
-      if (playerAnswerEl === questions[questionNum].answer) {
-        answerResultEl = "Correct!";
+function answerCheck(event) {
+  let answerText = "";
+  let answer = event.target.value;
+  if (event.target.nodeName == "BUTTON") {
+    if (answer) {
+      if (answer === questions[questionNumEl].answer) {
+        answerText = "Correct!";
       } else {
-        answerResultEl = "Incorrect!";
-        timeEl -= 15;
-        if (timeEl <= 0) {
-          timeEl = 0;
+        answerText = "Wrong!";
+        time -= 15;
+        // set timer to zero if it goes negative
+        if (time <= 0) {
+          time = 0;
         }
       }
-      // Show answerResult
-      answerTextEl.textContent = `<hr /> ${answerResult}`;
-      if (answerTextEl.style != "display: block;") {
-        answerTextEl.style = "display: block;";
+
+      // show then hide the result of the response
+      resultEl.innerHTML = `<hr /> ${answerText}`;
+      if (resultEl.style != "display: block;") {
+        resultEl.style = "display: block;";
       }
-      answerTextEl.getElementById("");
+      setTimeout(function () {
+        resultEl.style = "display: none;";
+      }, 750);
     }
+    // get next question
+    questionNumEl++;
+    getQuestion();
   }
-  // incorrect remove seconds
-  // set score
-  // get next question
-  getQuestion();
-  // if questions.length
-  endGame();
 }
 
 // end game
 function endGame() {
-  // set their score
-  // show end screen
-  // clear out timer
+  let gameOverEl = document.getElementById("end-game-container");
+  // set their score, show end screen, clear timer
+  if (time != 0) {
+    document.getElementById("#show-score").textContent = time;
+  } else {
+    document.getElementById("#show-score").textContent =
+      "You did not finish 🤦‍♂️🤦‍♀️";
+  }
+  setTimeout(function () {
+    questionContainerEl.style = "display: none";
+    resultEl.style = "display: none;";
+    gameOverEl.classList.remove("hide");
+  }, 750);
 }
 
 // save high score
-function saveHighScore() {
-  // prompt for initials
-  // save score to localStorage
+function saveHighScore(event) {
+  event.preventDefault();
+  if (playerInitials.value.trim() == "") {
+    if (alertBoxEl.style != "display:block;") {
+      alertBoxEl.style = "display:block;";
+
+      setTimeout(function () {
+        alertBoxEl.style = "display: none;";
+      }, 1000);
+    }
+    return;
+  } else {
+    let newHighScore = {
+      initials: playerInitialsEl.value.toUpperCase().trim(),
+      score: time,
+    };
+    scoresArrayEl.push(newHighScore);
+    scoresArrayEl.sort(function (a, b) {
+      return b.score - a.score;
+    });
+    localStorage.setItm("local-high-scores", JSON.stringify(scoresArrayEl));
+    window.location.href = "./scores.html";
+  }
 }
+
+
+// prompt for initials
+// save score to localStorage
 
 // event listeners
 // start button click
-document.querySelector("#startBtn").onclick = startQuiz;
+document.getElementById("start-btn").onclick = startQuiz;
 // check answer click
 document.addEventListener("click", answerCheck);
 // save high score
-saveScore.addEventListener("click", saveHighScore);
+document.getElementById("submit-button").onclick = saveHighScore;
