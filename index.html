@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Coding Quiz Challenge</title>
 </head>
 
@@ -13,7 +13,7 @@
         <span id="time-remaining">Time: </span>
     </nav>
     <section class="center-column">
-        <div id="instructions-screen">
+        <div id="instructions-screen" class="center-column">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions qithin the time limit. Keep in mind that incorrect
                 answers
@@ -22,10 +22,10 @@
         </div>
         <div id="question-container" class="center-column hide">
             <div id="question-text"></div>
-            <button id="option0" class="btn">0</button>
-            <button id="option1" class="btn">1</button>
-            <button id="option2" class="btn">2</button>
-            <button id="option3" class="btn">3</button>
+            <button class="btn answerChoice">0</button>
+            <button class="btn answerChoice">1</button>
+            <button class="btn answerChoice">2</button>
+            <button class="btn answerChoice">3</button>
         </div>
         <div id="answer-result"></div>
 
@@ -36,19 +36,19 @@
             <form id="enter-initials">
                 <div>
                     <label for="input-initials">Enter Your Initials</label>
-                    <input type="text" id="player-initials" value="">
+                    <input type="text" id="player-initials" placeholder="ABC" value="" required>
                 </div>
                 <button type="submit" id="submit-button">Submit</button>
             </form>
-            <div id="alert-box" class="hide">
+            <div id="alert-box">
                 Please enter your initials!
             </div>
         </div>
-        </div>
     </section>
 
-    <script src="./assets/questions.js"></script>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/js/StorageMethods.js"></script>
+    <script src="./assets/js/questions.js"></script>
+    <script src="./assets/js/index.js"></script>
 </body>
 
 </html>
