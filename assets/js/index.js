@@ -1,13 +1,12 @@
 // Global variables
 
-
 let time = 15 * questions.length;
 let timeLimit;
 const questionContainerEl = document.getElementById("question-container");
 const questionTextEl = document.getElementById("question-text");
 let responseOptionsEl = document.getElementsByClassName("answerChoice");
 let timeRemainingEl = document.getElementById("time-remaining");
-let hideInstructions = document.getElementById("instructions-screen");
+let instructionsEl = document.getElementById("instructions-screen");
 let resultEl = document.getElementById("answer-result");
 let initialsFormEl = document.getElementById("enter-initials");
 let playerInitialsEl = document.getElementById("player-initials");
@@ -15,22 +14,21 @@ let alertBoxEl = document.getElementById("alert-box");
 let gameOverEl = document.getElementById("end-game-container");
 let showScore = document.getElementById("show-score");
 let questionNumEl = 0;
-let scoresArrayEl;
+let scoresEl = document.getElementById("scores-container");
 playerInitialsEl.value = "";
 
 // event listeners
 // start button click
 document.getElementById("start-btn").onclick = startQuiz;
-// check answer click
-// document.addEventListener("click", answerCheck);
 // save high score
-// document.getElementById("submit-button").onclick = saveHighScore;
 initialsFormEl.onsubmit = saveHighScore;
+// try again button
+document.getElementById("try-again").onclick = tryAgain;
 
 // Function that will execute upon clicking the start button
 function startQuiz() {
   // Hide title screen
-  hideInstructions.classList.add("hide");
+  instructionsEl.classList.add("hide");
 
   // show question container
   questionContainerEl.classList.remove("hide");
@@ -110,7 +108,7 @@ function answerCheck() {
 // end game
 function endGame() {
   clearInterval(timeLimit);
-
+  timeRemainingEl.classList.add("hide");
   // set their score, show end screen, clear timer
   if (time > 0) {
     showScore.textContent = time;
@@ -133,16 +131,31 @@ function saveHighScore(event) {
     initials: playerInitialsEl.value.toUpperCase().trim(),
     score: time,
   };
-
-  console.log(newHighScore);
-
   highscores.push(newHighScore);
   highscores.sort(function (a, b) {
     return b.score - a.score;
   });
 
   SetScore();
-  // localStorage.setItm("local-high-scores", JSON.stringify(scoresArrayEl));
-  window.location.href = "./scores.html";
+  gameOverEl.classList.add("hide");
+  scoresEl.classList.remove("hide");
 }
 
+function displayScores() {
+  LocalStorageKey.forEach((obj) => {
+    let initials = obj.initials;
+    let storedScore = obj.score;
+    let resultsP = document.createElement("p");
+    resultsP.innerHTML = `${initials}: ${storedScore}`;
+    scoresDiv.append(resultsP);
+  });
+}
+
+function tryAgain() {
+  scoresEl.classList.add("hide");
+  instructionsEl.classList.remove("hide");
+}
+
+function clearScores() {
+  
+}
