@@ -17,9 +17,9 @@ let scoresEl = document.getElementById("scores-container");
 let scoresListEl = document.getElementById("scores-list");
 let youLoseEl = document.getElementById("lost-game");
 let tryAgainEl = document.getElementById("try-again-container");
-let viewHighScores = document.getElementById("view-scores");
+let viewtopScores = document.getElementById("view-scores");
 
-let highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+let topScores = JSON.parse(localStorage.getItem("topScores")) || [];
 
 // event listeners
 // start button click
@@ -30,28 +30,24 @@ initialsFormEl.onsubmit = saveHighScore;
 document.getElementById("try-again").onclick = tryAgain;
 // clear button
 document.getElementById("clear-scores").onclick = clearScores;
-// view highscores link
+// view topScores link
 document.getElementById("view-scores").onclick = displayScores;
 
 // Function that will execute upon clicking the start button
 function startQuiz() {
   // Hide title screen and scores button
   instructionsEl.classList.add("hide");
-  viewHighScores.classList.add("hide");
-
+  viewtopScores.classList.add("hide");
   // show question container
   questionContainerEl.classList.remove("hide");
-
   // Set timer
   startTimer();
-
   // Show first question
   getQuestion();
 }
 
 function startTimer() {
   timeRemainingEl.textContent = "Time: " + time;
-
   timeLimit = setInterval(function () {
     time--;
     timeRemainingEl.textContent = "Time: " + time;
@@ -131,17 +127,17 @@ function endGame() {
 
 function saveHighScore(event) {
   event.preventDefault();
-  const score = {
+  let score = {
     initials: playerInitialsEl.value.toUpperCase().trim(),
     score: time,
   };
-  highScores.push(score);
-  highScores.sort((a, b) => b.score - a.score);
+  topScores.push(score);
+  topScores.sort((a, b) => b.score - a.score);
 
-  localStorage.setItem("highScores", JSON.stringify(highScores));
+  localStorage.setItem("topScores", JSON.stringify(topScores));
   displayScores();
   // show and hide stuff
-  viewHighScores.classList.add("hide");
+  viewtopScores.classList.add("hide");
   instructionsEl.classList.add("hide");
   gameOverEl.classList.add("hide");
   scoresEl.classList.remove("hide");
@@ -149,14 +145,14 @@ function saveHighScore(event) {
 }
 
 function displayScores() {
-  scoresListEl.innerHTML = `<ul id="highScoresList">`;
-  let highScoresList = document.getElementById("highScoresList");
-  highScoresList.innerHTML = highScores
+  scoresListEl.innerHTML = `<ul id="topScoresList">`;
+  let topScoresList = document.getElementById("topScoresList");
+  topScoresList.innerHTML = topScores
     .map((score) => {
       return `<li class="scoresList">${score.initials} - ${score.score}</li>`;
     })
     .join("");
-  viewHighScores.classList.add("hide");
+  viewtopScores.classList.add("hide");
   instructionsEl.classList.add("hide");
   gameOverEl.classList.add("hide");
   scoresEl.classList.remove("hide");
@@ -170,7 +166,7 @@ function tryAgain() {
 
 // clear scores from local storage
 function clearScores() {
-  localStorage.removeItem("highscores");
+  localStorage.removeItem("topScores");
   while (scoresListEl.lastElementChild) {
     scoresListEl.removeChild(scoresListEl.lastElementChild);
   }
