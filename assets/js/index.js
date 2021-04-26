@@ -152,8 +152,9 @@ function saveHighScore(event) {
   // show scores
   window.localStorage.getItem("highscores");
   let leaderboard = JSON.parse(window.localStorage.getItem("highscores"));
+  
   let resultsP = document.createElement("p");
-  resultsP.innerText = leaderboard;
+  resultsP.innerText = scoresStringified;
   scoresListEl.append(resultsP);
 
   // show and hide stuff
@@ -188,4 +189,7 @@ function tryAgain() {
 // clear scores from local storage
 function clearScores() {
   localStorage.removeItem("highscores");
+  while (scoresListEl.lastElementChild) {
+    scoresListEl.removeChild(scoresListEl.lastElementChild);
+  }
 }

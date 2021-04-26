@@ -12,6 +12,8 @@ function GetScore() {
 function SetLocal(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
-function GetLocal(key) {
-  return JSON.parse(localStorage.getItem(key));
+function GetLocal() {
+  return JSON.parse(localStorage.getItem("highscores"));
 }
+
+let scoresStringified = JSON.stringify(highscores);
