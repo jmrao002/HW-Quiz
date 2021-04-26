@@ -18,6 +18,11 @@ let youLoseEl = document.getElementById("lost-game");
 let tryAgainEl = document.getElementById("try-again-container");
 let viewHighScores = document.getElementById("view-scores");
 playerInitialsEl.value = "";
+let scores = [];
+let storedScores = JSON.parse(localStorage.getItem("scores"));
+if (storedScores !== null) {
+  scores = storedScores;
+}
 
 // event listeners
 // start button click
@@ -134,18 +139,22 @@ function endGame() {
 // save high score
 function saveHighScore(event) {
   event.preventDefault();
+  let newHighScore = {
+    initials: playerInitialsEl.value.toUpperCase().trim(),
+    score: time,
+  };
   highscores.push(newHighScore);
   highscores.sort(function (a, b) {
     return b.score - a.score;
   });
   SetScore();
-  showLeaderboard();
+  // showLeaderboard();
   // show scores
-  // window.localStorage.getItem("highscores");
-  // let leaderboard = JSON.parse(window.localStorage.getItem("highscores"));
-  // let resultsP = document.createElement("p");
-  // resultsP.innerText = leaderboard;
-  // scoresListEl.append(resultsP);
+  window.localStorage.getItem("highscores");
+  let leaderboard = JSON.parse(window.localStorage.getItem("highscores"));
+  let resultsP = document.createElement("p");
+  resultsP.innerText = leaderboard;
+  scoresListEl.append(resultsP);
 
   // show and hide stuff
   viewHighScores.classList.add("hide");
@@ -155,26 +164,21 @@ function saveHighScore(event) {
   tryAgainEl.classList.remove("hide");
 }
 
-// show scores on screen
-function showLeaderboard() {
-  scoresListEl.innerHTML = "";
-  // add each score to list
-  for (let i = 0; i < newHighScore.length; i++) {
-    let score = newHighScore[i];
-    let li = document.createElement("li");
-    li.textContent = score;
-    scoresListEl.appendChild(li);
-  }
-  let storedScores = JSON.parse(localStorage.getItem("scores"));
-  if (storedScores !== null) {
-    newHighScore = storedScores;
-  }
-}
-
-let newHighScore = {
-  initials: playerInitialsEl.value.toUpperCase().trim(),
-  score: time,
-};
+// // show scores on screen
+// function showLeaderboard() {
+//   scoresListEl.innerHTML = "";
+//   // add each score to list
+//   for (let i = 0; i < newHighScore.length; i++) {
+//     let score = newHighScore[i];
+//     let li = document.createElement("li");
+//     li.textContent = score;
+//     scoresListEl.appendChild(li);
+//   }
+//   let storedScores = JSON.parse(localStorage.getItem("scores"));
+//   if (storedScores !== null) {
+//     newHighScore = storedScores;
+//   }
+// }
 
 // restart game
 function tryAgain() {
