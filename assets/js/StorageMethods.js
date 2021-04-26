@@ -1,3 +1,4 @@
+// methods to organize data in local storage
 const LocalStorageKey = "highscores";
 const highscores = GetScore();
 

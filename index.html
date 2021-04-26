@@ -9,8 +9,8 @@
 
 <body>
     <nav class="font-24">
-        <a href="scores.html">View Highscores</a>
-        <span id="time-remaining">Time: </span>
+        <button id="view-scores">View Highscores</button>
+        <span id="time-remaining"></span>
     </nav>
     <section class="center-column">
         <div id="instructions-screen" class="center-column">
@@ -20,18 +20,18 @@
                 will penalize your score/time by ten seconds!</p>
             <button id="start-btn">Start Quiz</button>
         </div>
-        <div id="question-container" class="center-column hide">
+        <div id="question-container" class="hide">
             <div id="question-text"></div>
-            <button class="btn answerChoice">0</button>
-            <button class="btn answerChoice">1</button>
-            <button class="btn answerChoice">2</button>
-            <button class="btn answerChoice">3</button>
+            <button class="btn answerChoice"></button>
+            <button class="btn answerChoice"></button>
+            <button class="btn answerChoice"></button>
+            <button class="btn answerChoice"></button>
         </div>
         <div id="answer-result"></div>
         <div id="end-game-container" class="hide">
             <h2>All Done!</h2>
             <p>Your final score is:</p>
-            <h3 id="show-score">DNF</h3>
+            <h3 id="show-score"></h3>
             <form id="enter-initials">
                 <div>
                     <label for="input-initials">Enter Your Initials</label>
@@ -39,15 +39,20 @@
                 </div>
                 <button type="submit" id="submit-button">Submit</button>
             </form>
-            <div id="alert-box">
+            <div>
                 Please enter your initials!
             </div>
         </div>
-        <div id="scores-container" class="hide">
+        <div id="lost-game" class="font-36 column-center hide">
+            <p>🤦‍♂️You did not finish🤦‍♀️</p>
+        </div>
+        <div id="scores-container" class="center-column hide">
             <h1 class="center-column">Highscores</h1>
-            <div id="scores-list"></div>
-            <button id="try-again" class="btn">Try Again!</button>
-            <button id=" clear-scores" class="btn">Clear High Scores</button>
+            <ul id="scores-list"></ul>
+            <button id="clear-scores" class="btn">Clear High Scores</button>
+        </div>
+        <div id="try-again-container" class="hide">
+            <button id="try-again" class="btn">Go Back</button>
         </div>
     </section>
     <script src="./assets/js/StorageMethods.js"></script>
