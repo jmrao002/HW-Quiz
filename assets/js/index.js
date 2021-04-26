@@ -1,5 +1,5 @@
 // Global variables
-let time = 15 * questions.length;
+let time = 10 * questions.length;
 let timeLimit;
 const questionContainerEl = document.getElementById("question-container");
 const questionTextEl = document.getElementById("question-text");
@@ -25,7 +25,7 @@ let topScores = JSON.parse(localStorage.getItem("topScores")) || [];
 // start button click
 document.getElementById("start-btn").onclick = startQuiz;
 // save high score
-initialsFormEl.onsubmit = saveHighScore;
+initialsFormEl.onsubmit = saveScore;
 // try again button
 document.getElementById("try-again").onclick = tryAgain;
 // clear button
@@ -100,7 +100,7 @@ function answerCheck() {
 
   setTimeout(function () {
     resultEl.classList.add("hide");
-    resultEl.innerHTML = "";
+    resultEl.textContent = "";
   }, 750);
 
   // get next question
@@ -125,25 +125,24 @@ function endGame() {
   resultEl.classList.add("hide");
 }
 
-function saveHighScore(event) {
+// record initials and score to local storage and display to screen
+function saveScore(event) {
   event.preventDefault();
   let score = {
     initials: playerInitialsEl.value.toUpperCase().trim(),
     score: time,
   };
+  // push player input and time to the score array
   topScores.push(score);
   topScores.sort((a, b) => b.score - a.score);
-
+  // convert the data in the array to a string so it will look nice on the screen
   localStorage.setItem("topScores", JSON.stringify(topScores));
   displayScores();
   // show and hide stuff
-  viewtopScores.classList.add("hide");
-  instructionsEl.classList.add("hide");
-  gameOverEl.classList.add("hide");
-  scoresEl.classList.remove("hide");
-  tryAgainEl.classList.remove("hide");
+  showAndHideStuff();
 }
 
+// display the leaderboard
 function displayScores() {
   scoresListEl.innerHTML = `<ul id="topScoresList">`;
   let topScoresList = document.getElementById("topScoresList");
@@ -152,6 +151,12 @@ function displayScores() {
       return `<li class="scoresList">${score.initials} - ${score.score}</li>`;
     })
     .join("");
+  // show and hide stuff
+  showAndHideStuff();
+}
+
+// shorthand function for showing the right divs at the right time
+function showAndHideStuff() {
   viewtopScores.classList.add("hide");
   instructionsEl.classList.add("hide");
   gameOverEl.classList.add("hide");

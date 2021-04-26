@@ -1,5 +1,7 @@
 * {
+  font-family: "Comic Neue", cursive;
   font-size: xx-large;
+  font-weight: bolder;
   color: black;
   text-shadow: -1px 0 white;
 }
@@ -15,14 +17,6 @@ body nav {
 
 body header a {
   color: #4e2a84;
-}
-
-.font-24 {
-  font-size: 24px;
-}
-
-.font-36 {
-  font-size: 36px;
 }
 
 .center-column {
@@ -51,6 +45,14 @@ body header a {
   display: none;
 }
 
-.wide600 {
+.wide50 {
   width: 50%;
+}
+
+.round-corners {
+  border-radius: 25px;
+}
+
+.scoresList {
+  list-style-type: decimal;
 }

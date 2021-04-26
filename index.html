@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&display=swap" rel="stylesheet">
     <title>Coding Quiz Challenge</title>
 </head>
 
 <body>
     <!-- Header for View Highscores and timer -->
-    <nav class="font-24">
+    <nav>
         <button id="view-scores" class="btn">View Highscores</button>
         <span id="time-remaining"></span>
     </nav>
@@ -23,7 +25,7 @@
             <button id="start-btn" class="btn">Start Quiz</button>
         </div>
         <!-- Holds questions and response options -->
-        <div id="question-container" class="hide wide600">
+        <div id="question-container" class="hide wide50">
             <div id="question-text"></div>
             <button class="btn answerChoice"></button>
             <button class="btn answerChoice"></button>
@@ -49,8 +51,11 @@
             </div>
         </div>
         <!-- Holds data for incompletion -->
-        <div id="lost-game" class="font-36 column-center hide">
-            <p>🤦‍♂️You did not finish🤦‍♀️</p>
+        <div id="lost-game" class="column-center hide">
+            <p>You did not finish</p>
+            <img class="round-corners"
+                src="https://media4.giphy.com/media/NM8ZZLPsPk1nq/giphy.gif?cid=ecf05e473s8xh6f89hnn1tsxr7z0nodmi7v6h9xq7cfjigwd&rid=giphy.gif&ct=g"
+                alt="Bad Day Squidward">
         </div>
         <!-- Leaderboard with clear scores and try again buttons -->
         <div id="scores-container" class="center-column hide">
