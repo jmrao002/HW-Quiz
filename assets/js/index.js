@@ -18,7 +18,6 @@ let scoresListEl = document.getElementById("scores-list");
 let youLoseEl = document.getElementById("lost-game");
 let tryAgainEl = document.getElementById("try-again-container");
 let viewHighScores = document.getElementById("view-scores");
-let scores;
 
 let highScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
@@ -82,8 +81,6 @@ function getQuestion() {
   document.getElementById("question-text").textContent = questionInfoEl.title;
   // show the question
   questionContainerEl.classList.remove("hide");
-
-  // answerCheck();
 }
 
 // check user selection
@@ -159,6 +156,11 @@ function displayScores() {
       return `<li class="scoresList">${score.initials} - ${score.score}</li>`;
     })
     .join("");
+  viewHighScores.classList.add("hide");
+  instructionsEl.classList.add("hide");
+  gameOverEl.classList.add("hide");
+  scoresEl.classList.remove("hide");
+  tryAgainEl.classList.remove("hide");
 }
 
 // restart game

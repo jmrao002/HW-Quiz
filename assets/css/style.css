@@ -1,3 +1,13 @@
+* {
+  font-size: xx-large;
+  color: black;
+  text-shadow: -1px 0 white;
+}
+
+body {
+  background-image: url("https://wallpapercave.com/wp/wp2636472.jpg");
+}
+
 body nav {
   display: flex;
   justify-content: space-between;
@@ -39,4 +49,8 @@ body header a {
 
 .hide {
   display: none;
+}
+
+.wide600 {
+  width: 50%;
 }
