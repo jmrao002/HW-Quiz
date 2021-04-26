@@ -1,43 +1,48 @@
 let questions = [
   {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts",
+    title: "What was the name of Mr. Krabs' pet worm?",
+    choices: ["Mr. Doodles", "Petunia", "Money", "Mrs. Lola"],
+    answer: "Mr. Doodles",
   },
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses",
+    title: "What was the Krusty Krab before Mr. Krabs acquired it?",
+    choices: [
+      "An arcade",
+      "A retirement home",
+      "A pet shop",
+      "It didn't exist before",
+    ],
+    answer: "A retirement home",
   },
   {
-    title: "Data is stored in localStorage as _____.",
-    choices: ["strings", "objects", "arrays", "all of the above"],
-    answer: "strings",
+    title: "What are the names of Patrick's parents?",
+    choices: [
+      "Janet and Marty",
+      "Geoffry and Linda",
+      "Herb and Margie",
+      "Leonard and Gloria",
+    ],
+    answer: "Herb and Margie",
+  },
+  {
+    title: "What did SpongeBob end up naming No-Name the blue jellyfish?",
+    choices: ["Namie", "JellyBob", "Mystery", "Friend"],
+    answer: "Friend",
   },
   {
     title:
-      "Which of the following is NOT a method to call an element with class 'example'?",
-    choices: [
-      "document.getElementsByClassName( 'example');",
-      "document.body.example;",
-      "document.querySelector( '.example')",
-      "document.querySelectorAll( '.example')[0]",
-    ],
-    answer: "document.body.example;",
+      "How much money did Mr. Krabs spend on his first date with Mrs. Puff?",
+    choices: ["$100", "$1,000", "$10,000", "$100,000"],
+    answer: "$100,000",
   },
   {
-    title: "Arrays in JavaScript can be used to store ______.",
-    choices: ["strings", "numbers", "objects", "All of the Above"],
-    answer: "All of the Above",
-  },
-  {
-    title: "Undefined does NOT mean that _______.",
+    title: "What happened to Mr. Puff?",
     choices: [
-      "the variable in the code doesn't exist",
-      "the variable is not assigned to a value",
-      "the variable is assigned no value",
-      "the property doesn't exist",
+      "He died in a boating accident",
+      "He left Mrs. Puff",
+      "He was turned into a lamp",
+      "He was caught and eaten",
     ],
-    answer: "the variable is assigned no value",
+    answer: "He was turned into a lamp",
   },
 ];

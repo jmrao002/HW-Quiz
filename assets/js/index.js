@@ -9,6 +9,7 @@ let instructionsEl = document.getElementById("instructions-screen");
 let resultEl = document.getElementById("answer-result");
 let initialsFormEl = document.getElementById("enter-initials");
 let playerInitialsEl = document.getElementById("player-initials");
+playerInitialsEl.value = "";
 let gameOverEl = document.getElementById("end-game-container");
 let showScore = document.getElementById("show-score");
 let questionNumEl = 0;
@@ -17,12 +18,9 @@ let scoresListEl = document.getElementById("scores-list");
 let youLoseEl = document.getElementById("lost-game");
 let tryAgainEl = document.getElementById("try-again-container");
 let viewHighScores = document.getElementById("view-scores");
-playerInitialsEl.value = "";
-let scores = [];
-let storedScores = JSON.parse(localStorage.getItem("scores"));
-if (storedScores !== null) {
-  scores = storedScores;
-}
+let scores;
+
+let highScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 // event listeners
 // start button click
@@ -34,7 +32,7 @@ document.getElementById("try-again").onclick = tryAgain;
 // clear button
 document.getElementById("clear-scores").onclick = clearScores;
 // view highscores link
-document.getElementById("view-scores").onclick = saveHighScore;
+document.getElementById("view-scores").onclick = displayScores;
 
 // Function that will execute upon clicking the start button
 function startQuiz() {
@@ -130,33 +128,21 @@ function endGame() {
     gameOverEl.classList.add("hide");
     tryAgainEl.classList.remove("hide");
   }
-  setTimeout(function () {
-    questionContainerEl.classList.add("hide");
-    resultEl.classList.add("hide");
-  }, 0);
+  questionContainerEl.classList.add("hide");
+  resultEl.classList.add("hide");
 }
 
-// save high score
 function saveHighScore(event) {
   event.preventDefault();
-  let newHighScore = {
+  const score = {
     initials: playerInitialsEl.value.toUpperCase().trim(),
     score: time,
   };
-  highscores.push(newHighScore);
-  highscores.sort(function (a, b) {
-    return b.score - a.score;
-  });
-  SetScore();
-  // showLeaderboard();
-  // show scores
-  window.localStorage.getItem("highscores");
-  let leaderboard = JSON.parse(window.localStorage.getItem("highscores"));
-  
-  let resultsP = document.createElement("p");
-  resultsP.innerText = scoresStringified;
-  scoresListEl.append(resultsP);
+  highScores.push(score);
+  highScores.sort((a, b) => b.score - a.score);
 
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  displayScores();
   // show and hide stuff
   viewHighScores.classList.add("hide");
   instructionsEl.classList.add("hide");
@@ -165,21 +151,15 @@ function saveHighScore(event) {
   tryAgainEl.classList.remove("hide");
 }
 
-// // show scores on screen
-// function showLeaderboard() {
-//   scoresListEl.innerHTML = "";
-//   // add each score to list
-//   for (let i = 0; i < newHighScore.length; i++) {
-//     let score = newHighScore[i];
-//     let li = document.createElement("li");
-//     li.textContent = score;
-//     scoresListEl.appendChild(li);
-//   }
-//   let storedScores = JSON.parse(localStorage.getItem("scores"));
-//   if (storedScores !== null) {
-//     newHighScore = storedScores;
-//   }
-// }
+function displayScores() {
+  scoresListEl.innerHTML = `<ul id="highScoresList">`;
+  let highScoresList = document.getElementById("highScoresList");
+  highScoresList.innerHTML = highScores
+    .map((score) => {
+      return `<li class="scoresList">${score.initials} - ${score.score}</li>`;
+    })
+    .join("");
+}
 
 // restart game
 function tryAgain() {
