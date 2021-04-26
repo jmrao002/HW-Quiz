@@ -148,6 +148,7 @@ function saveHighScore(event) {
   // scoresListEl.append(resultsP);
 
   // show and hide stuff
+  viewHighScores.classList.add("hide");
   instructionsEl.classList.add("hide");
   gameOverEl.classList.add("hide");
   scoresEl.classList.remove("hide");

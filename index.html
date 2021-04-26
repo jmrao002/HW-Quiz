@@ -8,18 +8,22 @@
 </head>
 
 <body>
+    <!-- Header for View Highscores and timer -->
     <nav class="font-24">
-        <button id="view-scores">View Highscores</button>
+        <button id="view-scores" class="btn">View Highscores</button>
         <span id="time-remaining"></span>
     </nav>
+    <!-- Primary container -->
     <section class="center-column">
+        <!-- Holds instructions for quiz and start button -->
         <div id="instructions-screen" class="center-column">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions qithin the time limit. Keep in mind that incorrect
                 answers
                 will penalize your score/time by ten seconds!</p>
-            <button id="start-btn">Start Quiz</button>
+            <button id="start-btn" class="btn">Start Quiz</button>
         </div>
+        <!-- Holds questions and response options -->
         <div id="question-container" class="hide">
             <div id="question-text"></div>
             <button class="btn answerChoice"></button>
@@ -27,7 +31,9 @@
             <button class="btn answerChoice"></button>
             <button class="btn answerChoice"></button>
         </div>
+        <!-- Holds correct/incorrect text that will appear based on user response -->
         <div id="answer-result"></div>
+        <!-- Holds data for successful completion of game -->
         <div id="end-game-container" class="hide">
             <h2>All Done!</h2>
             <p>Your final score is:</p>
@@ -37,15 +43,17 @@
                     <label for="input-initials">Enter Your Initials</label>
                     <input type="text" id="player-initials" placeholder="ABC" value="" required>
                 </div>
-                <button type="submit" id="submit-button">Submit</button>
+                <button type="submit" id="submit-button" class="btn">Submit</button>
             </form>
             <div>
                 Please enter your initials!
             </div>
         </div>
+        <!-- Holds data for incompletion -->
         <div id="lost-game" class="font-36 column-center hide">
             <p>🤦‍♂️You did not finish🤦‍♀️</p>
         </div>
+        <!-- Leaderboard with clear scores and try again buttons -->
         <div id="scores-container" class="center-column hide">
             <h1 class="center-column">Highscores</h1>
             <ul id="scores-list"></ul>
